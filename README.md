@@ -24,25 +24,6 @@
 - 기온
 - 생태계
 
-## 시스템 요구사항
-
-- Python 3.13 이상
-- 의존성 패키지: fastmcp, beautifulsoup4, requests
-
-## 설치 및 실행
-
-```bash
-# 가상 환경 활성화
-.venv/Scripts/activate  # Windows
-# 또는
-source .venv/bin/activate  # Linux/Mac
-
-# 의존성 설치 (이미 설치되어 있다면 건너뛰기)
-uv pip install -e .
-
-# 서버 실행
-python main.py
-```
 
 ## 도구 사용 예시
 
