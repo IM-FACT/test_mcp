@@ -7,6 +7,8 @@ import hashlib
 import datetime
 from typing import List, Dict, Optional
 
+import analyzer.keyword
+
 # FastMCP 서버 초기화
 mcp = FastMCP(
     name="ClimateChangeEvidenceFinder",
@@ -311,49 +313,6 @@ def get_supported_climate_categories() -> List[str]:
     """
     return list(CLIMATE_DOMAINS.keys())
 
-@mcp.tool()
-def extract_climate_evidence(
-    html_content: str,
-    query: str,
-    max_results: int = 3
-) -> Dict:
-    """
-    HTML 콘텐츠에서 기후 변화 관련 질문에 대한 증거를 추출합니다.
-    
-    Parameters:
-    -----------
-    html_content : str
-        분석할 HTML 내용 문자열
-    query : str
-        찾고자 하는 정보에 대한 질문 또는 키워드
-    max_results : int
-        반환할 최대 결과 수 (기본값: 3)
-    
-    Returns:
-    --------
-    Dict
-        추출된 증거를 포함하는 사전
-        - 'evidence_paragraphs': 증거로 추출된 단락 목록
-        - 'query': 사용된 질문/키워드
-    """
-    result = {
-        "evidence_paragraphs": [],
-        "query": query
-    }
-    
-    soup = BeautifulSoup(html_content, 'html.parser')
-    
-    # 키워드 기반 단락 추출
-    keywords = query.lower().split()
-    paragraphs = soup.find_all(['p', 'div', 'section', 'article'])
-    
-    for p in paragraphs:
-        text = p.get_text(strip=True)
-        if text and any(keyword in text.lower() for keyword in keywords):
-            if len(result["evidence_paragraphs"]) < max_results:
-                result["evidence_paragraphs"].append(text)
-    
-    return result
 
 @mcp.tool()
 def search_based_crawler(
