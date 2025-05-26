@@ -1,0 +1,28 @@
+{
+    "General": {
+        "bbc.com": {
+            "type": "url",
+            "t_how": "/search?q=",
+            "next": "url",
+            "n_how": "&page=",
+            "elem": ["a", "data-testid", "internal-link"],
+            "link": "href"
+        },
+        "edition.cnn.com": {
+            "type": "selenium",
+            "t_how": "/search?q=",
+            "next": "click",
+            "n_how": ["div", "class", "pagination-arrow pagination-arrow-right search__pagination-link text-active"],
+            "elem": ["span", "class", "container__headline-text"],
+            "link": "data-zjs-href"
+        },
+        "abcnews.go.com": {
+            "type": "url",
+            "t_how": "/search?searchtext=",
+            "next": "url",
+            "n_how": "&page=",
+            "elem": ["a", "class", "AnchorLink"],
+            "link": "href"
+        }
+    }
+}
